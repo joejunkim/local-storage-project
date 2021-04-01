@@ -1,28 +1,24 @@
 window.addEventListener("DOMContentLoaded", (event) => {
-  
-  let formStorage = () => {
-    const form = document.getElementById('.form form__container');
 
-    form.addEventListener('click', (event)=>{
-      const value = document.getElementById('items')
-      value.innerText = event.target.value;
+  const storeItem = () => {
+    const button = document.getElementById('add-to-cart');
+    button.addEventListener('click', (event) => {
+      const itemValue = document.getElementById('items').value
+      const qtyValue = document.getElementById('quantity').value
 
-      localStorage.setItem("item",value)
+      localStorage.setItem(itemValue, qtyValue)
     })
-  // const showCart = () => {
+  };
+
+  const showCart = () => {
     
-    // };
-    
-    // const storeItem = () => {
-      
-      // };
-      
+  };
+
+  storeItem();
+
+
       // const removeItem = () => {
-        
+
         // };
-       
-        
-      }
-      formStorage()
-      });
-      
+
+});
