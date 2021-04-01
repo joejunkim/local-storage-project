@@ -13,16 +13,28 @@ window.addEventListener("DOMContentLoaded", (event) => {
   const showCart = () => {
     const shoppingCart = document.getElementById('shopping-cart');
     const ul = document.createElement('ul');
-    for(let key in localStorage){
-      const item = key;
-      const quantity = localStorage.getItem(key);
+    for (let i = 0; i < localStorage.length; i++) {
+      const item = localStorage.key(i);
+      const quantity = localStorage.getItem(item);
       const li = document.createElement('li');
-      // if(quantity){
-        li.innerText = "item: " + item + ", quantity: " + quantity;
-        ul.appendChild(li); 
-      // }
+      const removeButton = document.createElement('button')
+      removeButton.innerText = "Remove Item"
+      if (quantity){
+        li.innerText = "item: " + item + ", quantity: " + quantity + " "
+        li.appendChild(removeButton)
+        ul.appendChild(li);
+      }
+
+      shoppingCart.appendChild(ul);
+
+      };
     }
-    shoppingCart.appendChild(ul);
+
+  const removeItem = () => {
+    remove.addEventListener('click', event => {
+
+    })
+
 
   };
 
@@ -30,8 +42,18 @@ window.addEventListener("DOMContentLoaded", (event) => {
   showCart();
 
 
-      // const removeItem = () => {
-
-        // };
-
 });
+
+
+
+
+
+    // Another way to loop through localStoract using a key forloop
+// for(let key in localStorage){
+  //   const item = key;
+  //   const quantity = localStorage.getItem(key);
+//   const li = document.createElement('li');
+//   // if(quantity){
+//     li.innerText = "item: " + item + ", quantity: " + quantity;
+//     ul.appendChild(li);
+//   // }
