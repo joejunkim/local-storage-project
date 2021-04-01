@@ -8,6 +8,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
 
       localStorage.setItem(itemValue, qtyValue)
     })
+    showCart();
   };
 
   const showCart = () => {
@@ -17,29 +18,38 @@ window.addEventListener("DOMContentLoaded", (event) => {
       const item = localStorage.key(i);
       const quantity = localStorage.getItem(item);
       const li = document.createElement('li');
+      li.setAttribute("id", item)
       const removeButton = document.createElement('button')
+      removeButton.setAttribute('class', 'buttons')
       removeButton.innerText = "Remove Item"
       if (quantity){
         li.innerText = "item: " + item + ", quantity: " + quantity + " "
         li.appendChild(removeButton)
         ul.appendChild(li);
       }
-
       shoppingCart.appendChild(ul);
-
-      };
-    }
-
+      
+      
+    };
+  }
   const removeItem = () => {
-    remove.addEventListener('click', event => {
-
+    const allButtons = document.querySelectorAll(".buttons");
+    allButtons.forEach((button) => {
+      button.addEventListener('click', event => {
+        const buttonParent = event.target.parentNode.id;
+        console.log(buttonParent)
+        localStorage.removeItem(buttonParent);
+       
+        location.reload();
+        //showCart is invoked 
+      showCart();
+      })
+      
     })
-
-
   };
-
+// storeItem has to be called before removeItem
   storeItem();
-  showCart();
+  removeItem();
 
 
 });
